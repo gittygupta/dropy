@@ -1,6 +1,6 @@
 # dropy
 
-Scaled down version of Microsoft's AirSim (drone only). Ideal for developers looking to control the drone via keyboard. 'dropy' is a utility package to control the simulator (developed in Unity) by writing minimal code, essentially useful for training of NNs and ideally suited for RL. agents.
+Scaled down version of Microsoft's AirSim (drone only). Ideal for developers looking to control the drone via keyboard. 'dropy' is a utility package to control the simulator (developed in Unity) by writing minimal code, essentially useful for training of NNs and ideally suited for RL agents.
 
 [![Simulator](https://img.shields.io/badge/Simulator-drive-yellow.svg)](https://drive.google.com/drive/folders/1rJ4Kyzz2G8YoW9sLQ4O9FGsdoRb4Epek?usp=sharing)
 [![PyPI](https://img.shields.io/badge/PyPI-v0.0.5-blue.svg)](https://pypi.org/project/dropy/)
