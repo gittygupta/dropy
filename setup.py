@@ -3,7 +3,7 @@ from distutils.core import setup
 setup(
   name = 'dropy',
   packages = ['dropy'],
-  version = '0.0.2',
+  version = '0.0.3',
   license='MIT',
   description = 'A simple package for a simple drone simulator created in unity',
   author = 'Aousnik Gupta',
