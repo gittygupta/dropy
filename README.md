@@ -7,7 +7,7 @@ Scaled down version of Microsoft's AirSim (drone only). Ideal for developers loo
 [![python](https://img.shields.io/badge/python-3.6+-blue.svg)](https://www.python.org)
 [![Maintained?](https://img.shields.io/badge/Maintained%3F-YES-green.svg)](https://github.com/gittygupta/dropy)
 
-# Installation
+## Installation
 
 ```
 pip install dropy
@@ -16,7 +16,7 @@ pip install dropy
 Requires Python 3.6+
 Currently supported only on Win32 (MS Windows) environment
 
-# Usage
+## Usage
 
 ```python
 from dropy import Flight
@@ -35,6 +35,6 @@ print('Current Global Angles : ', flight.angles_xyz())
 
 The 'location' parameter specifies the directory of the simulator. In the above, it's in the folder 'simulator' under the same working directory.
 
-# Examples
+## Examples
 
 Examples of certain functions will be uploaded along with the package, in future releases.
