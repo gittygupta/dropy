@@ -14,7 +14,6 @@ setup(
   install_requires=[
           'validators',
           'pywinauto',
-          'ctypes',
           'PIL',
           'pyautogui'
       ],
