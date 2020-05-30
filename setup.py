@@ -9,7 +9,7 @@ setup(
   license='MIT',
   description = 'A simple package for a simple drone simulator created in unity',
   long_description=long_description,
-  long_description_content_type='text/markdown'
+  long_description_content_type='text/markdown',
   author = 'Aousnik Gupta',
   author_email = 'guptaaousnik@gmail.com',
   url = 'https://github.com/gittygupta/dropy',
