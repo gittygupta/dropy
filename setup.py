@@ -13,7 +13,7 @@ setup(
   keywords = ['simulator', 'python', 'unity', 'flight', 'control', 'NN', 'training', 'utility'],
   install_requires=[
           'validators',
-          'pillow'
+          'pillow',
           'pywinauto',
           'pyautogui'
       ],
