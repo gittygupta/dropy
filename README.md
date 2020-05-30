@@ -21,7 +21,7 @@ Currently supported only on Win32 (MS Windows) environment
 
 ## Usage
 
-#### Before using any functionalities of the package, make sure that the simulator is running.
+#### Before using any functionalities of the package, make sure that the simulator is running and also that it is TPP mode.
 
 ```python
 from dropy import Flight
