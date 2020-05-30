@@ -3,18 +3,18 @@ from distutils.core import setup
 setup(
   name = 'dropy',
   packages = ['dropy'],
-  version = '0.0.3',
+  version = '0.0.4',
   license='MIT',
   description = 'A simple package for a simple drone simulator created in unity',
   author = 'Aousnik Gupta',
   author_email = 'guptaaousnik@gmail.com',
   url = 'https://github.com/gittygupta/dropy',
-  download_url = 'https://github.com/gittygupta/dropy/archive/v0.0.2.tar.gz',
+  download_url = 'https://github.com/gittygupta/dropy/archive/v0.0.4.tar.gz',
   keywords = ['simulator', 'python', 'unity', 'flight', 'control', 'NN', 'training', 'utility'],
   install_requires=[
           'validators',
+          'pillow'
           'pywinauto',
-          'PIL',
           'pyautogui'
       ],
   classifiers=[
