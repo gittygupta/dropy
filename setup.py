@@ -1,19 +1,18 @@
-
-from distutils.core import setup
-#with open('README.md') as f:
-#    long_description = f.read()
+from setuptools import setup
+with open('README.md', 'r') as f:
+    long_description = f.read()
 setup(
   name = 'dropy',
   packages = ['dropy'],
-  version = '0.0.7',
+  version = '0.0.8',
   license='MIT',
   description = 'A simple package for a simple drone simulator created in unity',
-  #long_description=long_description,
-  #long_description_content_type='text/markdown',
+  long_description=long_description,
+  long_description_content_type='text/markdown',
   author = 'Aousnik Gupta',
   author_email = 'guptaaousnik@gmail.com',
   url = 'https://github.com/gittygupta/dropy',
-  download_url = 'https://github.com/gittygupta/dropy/archive/v0.0.7.tar.gz',
+  download_url = 'https://github.com/gittygupta/dropy/archive/v0.0.8.tar.gz',
   keywords = ['simulator', 'python', 'unity', 'flight', 'control', 'NN', 'training', 'utility'],
   install_requires=[
           'validators',
