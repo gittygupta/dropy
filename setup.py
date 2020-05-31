@@ -4,7 +4,7 @@ with open('README.md', 'r') as f:
 setup(
   name = 'dropy',
   packages = ['dropy'],
-  version = '0.0.9',
+  version = '0.0.10',
   license='MIT',
   description = 'A simple package for a simple drone simulator created in unity',
   long_description=long_description,
@@ -12,7 +12,7 @@ setup(
   author = 'Aousnik Gupta',
   author_email = 'guptaaousnik@gmail.com',
   url = 'https://github.com/gittygupta/dropy',
-  download_url = 'https://github.com/gittygupta/dropy/archive/v0.0.9.tar.gz',
+  download_url = 'https://github.com/gittygupta/dropy/archive/v0.0.10.tar.gz',
   keywords = ['simulator', 'python', 'unity', 'flight', 'control', 'NN', 'training', 'utility'],
   install_requires=[
           'validators',
