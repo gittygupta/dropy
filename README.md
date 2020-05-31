@@ -46,3 +46,4 @@ turn_left(n)
 ## Examples
 
 Examples of certain functions will be uploaded along with the package, in future releases.
+Full package documentation will be uploaded at ReadTheDocs.
