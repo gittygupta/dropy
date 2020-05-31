@@ -73,13 +73,13 @@ flight = Flight(location='simulator')  # location defines the directory where th
 
 coords = flight.coords_xyz()           # returns current global position of the agent
 angles = flight.angles_xyz()           # returns current global euler angles of the agent
+flight.top_view()                      # activates the top-down view of the simulator
+flight.fpp_view()                      # activates the FPP view of the simulator
+flight.tpp_view()                      # activates the TPP view of the simulator
 shot = screenshot()                    # returns ImageGrab of currently activated view
 fpp_view = flight.fpp_shot()           # returns ImageGrab of FPP camera of the simulator
 top_view = flight.top_shot()           # returns ImageGrab of top-down view of the simulator
 tpp_view = flight.tpp_shot()           # returns ImageGrab of TPP camera (Main Camera) of the simulator
-flight.top_view()                      # activates the top-down view of the simulator
-flight.fpp_view()                      # activates the FPP view of the simulator
-flight.tpp_view()                      # activates the TPP view of the simulator
 flight.goto(x, z)                      # flight travels from current global position to given global coordinates(x, z)
 ```
 
