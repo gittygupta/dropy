@@ -28,17 +28,15 @@ from dropy import Flight
 
 flight = Flight(location='simulator')
 
-for _ in range(10):
-    flight.turn_left()
-
-for _ in range(10):
-    flight.forward()
+flight.turn_left(180)
 
 print('Current Global Coordinates : ', flight.coords_xyz())
 print('Current Global Angles : ', flight.angles_xyz())
 ```
 
 The 'location' parameter specifies the directory of the simulator. In the above, it's in the folder 'simulator' under the same working directory.
+
+turn_left(n) -> 'n' specifies the number of degrees to turn
 
 ## Examples
 
