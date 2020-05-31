@@ -8,7 +8,7 @@ Scaled down version of Microsoft's AirSim (drone only). Ideal for developers loo
 [![python](https://img.shields.io/badge/python-3.6+-blue.svg)](https://www.python.org)
 [![Maintained?](https://img.shields.io/badge/Maintained%3F-YES-green.svg)](https://github.com/gittygupta/dropy)
 
-## Installation
+# Installation
 
 #### For the package to work, please download the simulator from the the drive link provided in the badge above. 
 
@@ -21,7 +21,7 @@ Requires Python 3.6+
 Currently supported only on Win32 (MS Windows) environment
 
 
-## Usage
+# Usage
 
 #### Before using any functionalities of the package, make sure that the simulator is running and also that it is TPP mode. Key bindings for the simulator is provided in the link itself.
 
@@ -45,7 +45,21 @@ turn_left(n)
 `
  -> 'n' specifies the number of degrees to turn
 
-## Examples
+# Examples
 
-Examples of certain functions will be uploaded along with the package, in future releases.
-Full package documentation will be uploaded at ReadTheDocs.
+## Controls
+
+```python
+from dropy import Flight
+
+flight = Flight(location='simulator')  # location defines the directory where the simulator is, in the workstation
+
+flight.turn_left(180)                  # turns 180 degrees to the left
+flight.turn_right(180)                 # turns 180 degrees to the right
+flight.up(10)                          # thrusts up by 10 distance units
+flight.down(10)                        # drops down by 10 distance units
+flight.forward(10)                     # moves forward by 10 distance units
+flight.backward(10)                    # moves backward by 10 distance units
+flight.swerve_left(10)                 # swerves 10 units to the left
+flight.swerve_right(180)               # swerves 10 units to the right
+```
