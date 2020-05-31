@@ -97,19 +97,7 @@ class Flight(object):
     def tpp_shot(self):
         # add changes to unity to denote which camera is currently open
         # Also save LOG file to its own directory 
-        if self.fpp_key % 2 == 0 and self.top_key % 2 == 0:
-            # alreaady in tpp
-            pass
-        elif self.fpp_key % 2 == 0 and self.top_key % 2 != 0:
-            # in top view
-            self.top_view()
-        elif self.fpp_key % 2 != 0 and self.top_key % 2 == 0:
-            # in fpp view
-            self.fpp_view()
-        else:
-            # mixed up
-            self.fpp_view()
-            self.top_view()
+        self.tpp_view()
             #raise CameraControlError('''Might have viewed FPP and then suddenly Top View (vice versa), before exiting into TPP View, i.e, pressed "1 and then 2" or "2 and then 1 again".
             #                            Had to press "1, then again 1 to exit, and then, press 2''')
         return self.screenshot()
@@ -230,6 +218,22 @@ class Flight(object):
         self.win.send_keystrokes('{2}')
         self.fpp_key += 1
         #print('FPP View')
+
+    def tpp_view(self):
+        if self.fpp_key % 2 == 0 and self.top_key % 2 == 0:
+            # alreaady in tpp
+            pass
+        elif self.fpp_key % 2 == 0 and self.top_key % 2 != 0:
+            # in top view
+            self.top_view()
+        elif self.fpp_key % 2 != 0 and self.top_key % 2 == 0:
+            # in fpp view
+            self.fpp_view()
+        else:
+            # mixed up
+            self.fpp_view()
+            self.top_view()
+        #print('TPP View')
 
     def coords_xyz(self):
         try:
