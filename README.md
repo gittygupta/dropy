@@ -63,3 +63,30 @@ flight.backward(10)                    # moves backward by 10 distance units
 flight.swerve_left(10)                 # swerves 10 units to the left
 flight.swerve_right(180)               # swerves 10 units to the right
 ```
+
+## Utilities
+
+```python
+from dropy import Flight
+
+flight = Flight(location='simulator')  # location defines the directory where the simulator is, in the workstation
+
+coords = flight.coords_xyz()           # returns current global position of the agent
+angles = flight.angles_xyz()           # returns current global euler angles of the agent
+shot = screenshot()                    # returns ImageGrab of currently activated view
+fpp_view = flight.fpp_shot()           # returns ImageGrab of FPP camera of the simulator
+top_view = flight.top_shot()           # returns ImageGrab of top-down view of the simulator
+tpp_view = flight.tpp_shot()           # returns ImageGrab of TPP camera (Main Camera) of the simulator
+flight.top_view()                      # activates the top-down view of the simulator
+flight.fpp_view()                      # activates the FPP view of the simulator
+                                       # tpp view will be added
+flight.goto(x, z)                      # flight travels from current global position to given global coordinates(x, z)
+```
+
+# Contributions
+
+Every contribution will be welcome.
+
+Please feel free to raise issues on GitHub or pull requests for ideas, features and add-ons.
+
+The vision is to create better environments in a Pythonic way, for small scale development projects.
