@@ -80,7 +80,7 @@ shot = screenshot()                    # returns ImageGrab of currently activate
 fpp_view = flight.fpp_shot()           # returns ImageGrab of FPP camera of the simulator
 top_view = flight.top_shot()           # returns ImageGrab of top-down view of the simulator
 tpp_view = flight.tpp_shot()           # returns ImageGrab of TPP camera (Main Camera) of the simulator
-flight.goto(x, z)                      # flight travels from current global position to given global coordinates(x, z)
+flight.goto(500, 500)                  # flight travels from current global position to given global coordinates(500, 500)
 ```
 
 # Contributions
