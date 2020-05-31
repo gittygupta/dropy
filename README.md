@@ -36,7 +36,10 @@ print('Current Global Angles : ', flight.angles_xyz())
 
 The 'location' parameter specifies the directory of the simulator. In the above, it's in the folder 'simulator' under the same working directory.
 
-turn_left(n) -> 'n' specifies the number of degrees to turn
+`
+turn_left(n)
+`
+ -> 'n' specifies the number of degrees to turn
 
 ## Examples
 
