@@ -79,7 +79,7 @@ top_view = flight.top_shot()           # returns ImageGrab of top-down view of t
 tpp_view = flight.tpp_shot()           # returns ImageGrab of TPP camera (Main Camera) of the simulator
 flight.top_view()                      # activates the top-down view of the simulator
 flight.fpp_view()                      # activates the FPP view of the simulator
-                                       # tpp view will be added
+flight.tpp_view()                      # activates the TPP view of the simulator
 flight.goto(x, z)                      # flight travels from current global position to given global coordinates(x, z)
 ```
 
