@@ -16,6 +16,7 @@ pip install dropy
 ```
 
 Requires Python 3.6+
+
 Currently supported only on Win32 (MS Windows) environment
 
 
