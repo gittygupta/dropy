@@ -115,20 +115,20 @@ class Flight(object):
         return self.screenshot()
 
 
-    def turn_left(self):
+    def turn_left(self, n=1):
         #win.send_keystrokes('{w}')
         #win.send_keystrokes('{a}')
         #win.send_keystrokes('{s}')
         #win.send_keystrokes('{d}')
         #win.send_keystrokes('{i}')
-        
-        self.win.send_keystrokes('{j}')
+        for _ in range(n):
+            self.win.send_keystrokes('{j}')
         #win.send_keystrokes('{j}')
         #win.send_keystrokes('{k}')
         #win.send_keystrokes('{l}')
-        #print('Turn Left')
+        print('Turn Left')
 
-    def turn_right(self):
+    def turn_right(self, n=1):
         #win.send_keystrokes('{w}')
         #win.send_keystrokes('{a}')
         #win.send_keystrokes('{s}')
@@ -137,38 +137,39 @@ class Flight(object):
         #win.send_keystrokes('{j}')
         #win.send_keystrokes('{k}')
         #win.send_keystrokes('{l}')
-        self.win.send_keystrokes('{l}')
-        #print('Turn Right')
+        for _ in range(n):
+            self.win.send_keystrokes('{l}')
+        print('Turn Right')
 
-    def up(self):
+    def up(self, n=1):
         #win.send_keystrokes('{w}')
         #win.send_keystrokes('{a}')
         #win.send_keystrokes('{s}')
         #win.send_keystrokes('{d}')
-        
-        self.win.send_keystrokes('{i}')
+        for _ in range(n):
+            self.win.send_keystrokes('{i}')
         ##
         #win.send_keystrokes('{j}')
         #win.send_keystrokes('{k}')
         #win.send_keystrokes('{l}')
-        #print('Move up')
+        print('Move up')
 
-    def down(self):
+    def down(self, n=1):
         #win.send_keystrokes('{w}')
         #win.send_keystrokes('{a}')
         #win.send_keystrokes('{s}')
         #win.send_keystrokes('{d}')
         #win.send_keystrokes('{i}')
         #win.send_keystrokes('{j}')
-        
-        self.win.send_keystrokes('{k}')
+        for _ in range(n):
+            self.win.send_keystrokes('{k}')
         ##
         #win.send_keystrokes('{l}')
-        #print('Move down')
+        print('Move down')
 
-    def forward(self):
-        
-        self.win.send_keystrokes('{w}')
+    def forward(self, n=1):
+        for _ in range(n):    
+            self.win.send_keystrokes('{w}')
         ##
         #win.send_keystrokes('{a}')
         #win.send_keystrokes('{s}')
@@ -177,25 +178,25 @@ class Flight(object):
         #win.send_keystrokes('{j}')
         #win.send_keystrokes('{k}')
         #win.send_keystrokes('{l}')
-        #print('Go Forward')
+        print('Go Forward')
 
-    def backward(self):
+    def backward(self, n=1):
         #win.send_keystrokes('{w}')
         #win.send_keystrokes('{a}')
-        
-        self.win.send_keystrokes('{s}')
+        for _ in range(n):
+            self.win.send_keystrokes('{s}')
         #
         #win.send_keystrokes('{d}')
         #win.send_keystrokes('{i}')
         #win.send_keystrokes('{j}')
         #win.send_keystrokes('{k}')
         #win.send_keystrokes('{l}')
-        #print('Go Backward')
+        print('Go Backward')
 
-    def swerve_left(self):
+    def swerve_left(self, n=1):
         #win.send_keystrokes('{w}')
-        
-        self.win.send_keystrokes('{a}')
+        for _ in range(n):
+            self.win.send_keystrokes('{a}')
         ##
         #win.send_keystrokes('{s}')
         #win.send_keystrokes('{d}')
@@ -203,32 +204,32 @@ class Flight(object):
         #win.send_keystrokes('{j}')
         #win.send_keystrokes('{k}')
         #win.send_keystrokes('{l}')
-        #print('swerve Left')
+        print('swerve Left')
 
-    def swerve_right(self):
+    def swerve_right(self, n=1):
         #win.send_keystrokes('{w}') 
         #win.send_keystrokes('{a}')
         #win.send_keystrokes('{s}')
-        
-        self.win.send_keystrokes('{d}')
+        for _ in range(n):
+            self.win.send_keystrokes('{d}')
         ##
         #win.send_keystrokes('{i}')
         #win.send_keystrokes('{j}')
         #win.send_keystrokes('{k}')
         #win.send_keystrokes('{l}')
-        #print('swerve Right')
+        print('swerve Right')
 
     def top_view(self):
         #win.send_keystrokes('{1}')
         self.win.send_keystrokes('{1}')
         self.top_key += 1
-        #print('Top View')
+        print('Top View')
 
     def fpp_view(self):
         #win.send_keystrokes('{2}')
         self.win.send_keystrokes('{2}')
         self.fpp_key += 1
-        #print('FPP View')
+        print('FPP View')
 
     def coords_xyz(self):
         try:
@@ -258,14 +259,14 @@ class Flight(object):
                 coordinates = self.coords_xyz()
                 angles = self.angles_xyz()
 
-                #print('Coordinates : ', coordinates)
+                print('Coordinates : ', coordinates)
 
                 x1 = coordinates[0]
                 y1 = coordinates[1]
                 z1 = coordinates[2]
                 m_line = float((z2 - z1)/(x2 - x1))
                 slope_angle = 90 - math.degrees(math.atan(m_line))
-                #print('Slope Angle : ', slope_angle)
+                print('Slope Angle : ', slope_angle)
 
                 drone_angle = angles[1]
                 drone_angle_relative = drone_angle
@@ -277,19 +278,19 @@ class Flight(object):
                 if x1 > x2:     # to add a vector kinda thingie
                     turn_angle += 180
 
-                #print('Drone Angle : ', drone_angle_relative)
-                #print('Turn Angle : ', turn_angle)
+                print('Drone Angle : ', drone_angle_relative)
+                print('Turn Angle : ', turn_angle)
 
                 if turn_angle < -10:     # 10 for thresholding
-                    self.turn_right()
+                    self.turn_right(1)
                 elif turn_angle > 10:
-                    self.turn_left()
+                    self.turn_left(1)
                 else:
-                    self.forward()
+                    self.forward(1)
                 f.close()
 
                 if x1 > x2 - 10 and x1 < x2 + 10 and z1 > z2 - 10 and z1 < z2 + 10:
-                    print('Reached!')
+                    print('reached')
                     break        
 
             except:
