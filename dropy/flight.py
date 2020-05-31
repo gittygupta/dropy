@@ -126,7 +126,7 @@ class Flight(object):
         #win.send_keystrokes('{j}')
         #win.send_keystrokes('{k}')
         #win.send_keystrokes('{l}')
-        print('Turn Left')
+        #print('Turn Left')
 
     def turn_right(self, n=1):
         #win.send_keystrokes('{w}')
@@ -139,7 +139,7 @@ class Flight(object):
         #win.send_keystrokes('{l}')
         for _ in range(n):
             self.win.send_keystrokes('{l}')
-        print('Turn Right')
+        #print('Turn Right')
 
     def up(self, n=1):
         #win.send_keystrokes('{w}')
@@ -152,7 +152,7 @@ class Flight(object):
         #win.send_keystrokes('{j}')
         #win.send_keystrokes('{k}')
         #win.send_keystrokes('{l}')
-        print('Move up')
+        #print('Move up')
 
     def down(self, n=1):
         #win.send_keystrokes('{w}')
@@ -165,7 +165,7 @@ class Flight(object):
             self.win.send_keystrokes('{k}')
         ##
         #win.send_keystrokes('{l}')
-        print('Move down')
+        #print('Move down')
 
     def forward(self, n=1):
         for _ in range(n):    
@@ -178,7 +178,7 @@ class Flight(object):
         #win.send_keystrokes('{j}')
         #win.send_keystrokes('{k}')
         #win.send_keystrokes('{l}')
-        print('Go Forward')
+        #print('Go Forward')
 
     def backward(self, n=1):
         #win.send_keystrokes('{w}')
@@ -191,7 +191,7 @@ class Flight(object):
         #win.send_keystrokes('{j}')
         #win.send_keystrokes('{k}')
         #win.send_keystrokes('{l}')
-        print('Go Backward')
+        #print('Go Backward')
 
     def swerve_left(self, n=1):
         #win.send_keystrokes('{w}')
@@ -204,7 +204,7 @@ class Flight(object):
         #win.send_keystrokes('{j}')
         #win.send_keystrokes('{k}')
         #win.send_keystrokes('{l}')
-        print('swerve Left')
+        #print('swerve Left')
 
     def swerve_right(self, n=1):
         #win.send_keystrokes('{w}') 
@@ -217,19 +217,19 @@ class Flight(object):
         #win.send_keystrokes('{j}')
         #win.send_keystrokes('{k}')
         #win.send_keystrokes('{l}')
-        print('swerve Right')
+        #print('swerve Right')
 
     def top_view(self):
         #win.send_keystrokes('{1}')
         self.win.send_keystrokes('{1}')
         self.top_key += 1
-        print('Top View')
+        #print('Top View')
 
     def fpp_view(self):
         #win.send_keystrokes('{2}')
         self.win.send_keystrokes('{2}')
         self.fpp_key += 1
-        print('FPP View')
+        #print('FPP View')
 
     def coords_xyz(self):
         try:
@@ -259,14 +259,14 @@ class Flight(object):
                 coordinates = self.coords_xyz()
                 angles = self.angles_xyz()
 
-                print('Coordinates : ', coordinates)
+                #print('Coordinates : ', coordinates)
 
                 x1 = coordinates[0]
                 y1 = coordinates[1]
                 z1 = coordinates[2]
                 m_line = float((z2 - z1)/(x2 - x1))
                 slope_angle = 90 - math.degrees(math.atan(m_line))
-                print('Slope Angle : ', slope_angle)
+                #print('Slope Angle : ', slope_angle)
 
                 drone_angle = angles[1]
                 drone_angle_relative = drone_angle
@@ -278,8 +278,8 @@ class Flight(object):
                 if x1 > x2:     # to add a vector kinda thingie
                     turn_angle += 180
 
-                print('Drone Angle : ', drone_angle_relative)
-                print('Turn Angle : ', turn_angle)
+                #print('Drone Angle : ', drone_angle_relative)
+                #print('Turn Angle : ', turn_angle)
 
                 if turn_angle < -10:     # 10 for thresholding
                     self.turn_right(1)
@@ -290,7 +290,7 @@ class Flight(object):
                 f.close()
 
                 if x1 > x2 - 10 and x1 < x2 + 10 and z1 > z2 - 10 and z1 < z2 + 10:
-                    print('reached')
+                    print('Reached!')
                     break        
 
             except:
