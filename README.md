@@ -34,6 +34,8 @@ print('Current Global Coordinates : ', flight.coords_xyz())
 print('Current Global Angles : ', flight.angles_xyz())
 ```
 
+![dropy](https://github.com/gittygupta/dropy/blob/master/readme_gif.gif)
+
 The 'location' parameter specifies the directory of the simulator. In the above, it's in the folder 'simulator' under the same working directory.
 
 `
