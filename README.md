@@ -63,8 +63,8 @@ flight2 = Flight(location='multiplayer_drone_simulator')    # new flight-2 spawn
 flight3 = Flight(location='multiplayer_drone_simulator')    # new flight-3 spawned
 flight4 = Flight(location='multiplayer_drone_simulator')    # new flight=4 spawned
 
-flight1.turn_left(7)                                        # host turns 7 degrees to the left
-flight2.turn_right(7)                                       # flight-2 turns 7 degrees to the right
+flight1.turn_left(7)                                        # host turns 7 * 5 degrees to the left
+flight2.turn_right(7)                                       # flight-2 turns 7 * 5 degrees to the right
 flight3.forward(7)                                          # flight-3 goes forward by 7 distance units
 flight4.up(7)                                               # flight-4 thrusts up by 7 distance units
 
@@ -97,14 +97,14 @@ from dropy import Flight
 
 flight = Flight(location='simulator')  # location defines the directory where the simulator is, in the workstation
 
-flight.turn_left(180)                  # turns 180 degrees to the left
-flight.turn_right(180)                 # turns 180 degrees to the right
+flight.turn_left(7)                    # turns 7 * 5 degrees to the left
+flight.turn_right(7)                   # turns 7 * 5 degrees to the right
 flight.up(10)                          # thrusts up by 10 distance units
 flight.down(10)                        # drops down by 10 distance units
 flight.forward(10)                     # moves forward by 10 distance units
 flight.backward(10)                    # moves backward by 10 distance units
 flight.swerve_left(10)                 # swerves 10 units to the left
-flight.swerve_right(180)               # swerves 10 units to the right
+flight.swerve_right(10)                # swerves 10 units to the right
 ```
 
 ## Utilities
