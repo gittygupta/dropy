@@ -1,3 +1,4 @@
+import os
 import math
 import time
 import ctypes
@@ -5,6 +6,7 @@ import pyautogui
 import win32gui
 import win32ui
 import win32con
+import pywinauto
 from pywinauto import application
 from ctypes import windll
 from PIL import Image, ImageGrab
@@ -20,33 +22,59 @@ class CameraControlError(Exception):
 
 
 class Flight(object):
+    # start all instances of the multiplayer, then run the script
+    count = 0
+    handles = pywinauto.findwindows.find_windows(title='drone_simulator')
     def __init__(self, location):
         # window
         self.location = location
         self.fpp_key = 0
         self.top_key = 0
         self.title = 'drone_simulator'
+
+        time.sleep(1)   # control buffer
         self.app = application.Application(backend='win32')
-        self.app.connect(title=self.title)[0]
+
+        self.app.connect(handle=Flight.handles[Flight.count])      # 'start' does not load LOG file, so connect
         self.win = self.app.window(title_re=self.title)
+        self.hwnd = Flight.handles[Flight.count]
+        ctypes.windll.user32.SetProcessDPIAware()
+
+        self.__start()
+
         self.coords = (0, 0, 0)
         self.angles = (0, 0, 0)
 
-    def screenshot(self):
-        # this takes care of the DPI settings (https://stackoverflow.com/questions/51786794/using-imagegrab-with-bbox-from-pywin32s-getwindowrect)
-        ctypes.windll.user32.SetProcessDPIAware()
+        self.logfile = ''
+        Flight.count += 1
+        logfile = self.location + '/LOG' + str(Flight.count) + '.txt'
+        
+        if not os.path.exists(logfile):     # control buffer
+            time.sleep(1)
 
-        # get window handle and dimensions 
-        hwnd = win32gui.FindWindow(None, str(self.title))
-        dimensions = win32gui.GetWindowRect(hwnd)    
+        self.logfile = logfile
+
+            
+
+
+    def __start(self):      # private
+        self.win.send_keystrokes('{o}')
+        if Flight.count == 1:
+            self.win.send_keystrokes('{h}')
+        else:
+            self.win.send_keystrokes('{c}')
+
+
+    def __screenshot(self): # private
+        dimensions = win32gui.GetWindowRect(self.hwnd)    
 
         # this gets the window size, comparing it to `dimensions` will show a difference
-        winsize = win32gui.GetClientRect(hwnd)
+        winsize = win32gui.GetClientRect(self.hwnd)
 
         # this sets window to front if it is not already
-        win32gui.SetWindowPos(hwnd, win32con.HWND_NOTOPMOST,0,0,0,0, win32con.SWP_NOMOVE | win32con.SWP_NOSIZE)
-        win32gui.SetWindowPos(hwnd, win32con.HWND_TOPMOST,0,0,0,0, win32con.SWP_NOMOVE | win32con.SWP_NOSIZE)
-        win32gui.SetWindowPos(hwnd, win32con.HWND_NOTOPMOST,0,0,0,0, win32con.SWP_SHOWWINDOW | win32con.SWP_NOMOVE | win32con.SWP_NOSIZE)
+        win32gui.SetWindowPos(self.hwnd, win32con.HWND_NOTOPMOST,0,0,0,0, win32con.SWP_NOMOVE | win32con.SWP_NOSIZE)
+        win32gui.SetWindowPos(self.hwnd, win32con.HWND_TOPMOST,0,0,0,0, win32con.SWP_NOMOVE | win32con.SWP_NOSIZE)
+        win32gui.SetWindowPos(self.hwnd, win32con.HWND_NOTOPMOST,0,0,0,0, win32con.SWP_SHOWWINDOW | win32con.SWP_NOMOVE | win32con.SWP_NOSIZE)
 
         # grab screen region set in `dimensions`
         image = ImageGrab.grab(dimensions)
@@ -60,7 +88,7 @@ class Flight(object):
         DWMWA_EXTENDED_FRAME_BOUNDS = 9
 
         # and then the coordinates of the window go into `rect`
-        f(ctypes.wintypes.HWND(hwnd),
+        f(ctypes.wintypes.HWND(self.hwnd),
         ctypes.wintypes.DWORD(DWMWA_EXTENDED_FRAME_BOUNDS),
         ctypes.byref(rect),
         ctypes.sizeof(rect)
@@ -76,23 +104,26 @@ class Flight(object):
         image = ImageGrab.grab(dimensions)
         return image
 
+
     def fpp_shot(self):
         # add changes to unity to denote which camera is currently open
         # Also save LOG file to its own directory 
         if self.fpp_key % 2 == 0:
             self.fpp_view()
-        shot = self.screenshot()
+        shot = self.__screenshot()
         self.fpp_view()
         return shot
+
 
     def top_shot(self):
         # add changes to unity to denote which camera is currently open
         # Also save LOG file to its own directory 
         if self.top_key % 2 == 0:
             self.top_view()
-        shot = self.screenshot()
+        shot = self.__screenshot()
         self.top_view()
         return shot
+
 
     def tpp_shot(self):
         # add changes to unity to denote which camera is currently open
@@ -100,7 +131,7 @@ class Flight(object):
         self.tpp_view()
             #raise CameraControlError('''Might have viewed FPP and then suddenly Top View (vice versa), before exiting into TPP View, i.e, pressed "1 and then 2" or "2 and then 1 again".
             #                            Had to press "1, then again 1 to exit, and then, press 2''')
-        return self.screenshot()
+        return self.__screenshot()
 
 
     def turn_left(self, n=1):
@@ -116,6 +147,7 @@ class Flight(object):
         #win.send_keystrokes('{l}')
         #print('Turn Left')
 
+
     def turn_right(self, n=1):
         #win.send_keystrokes('{w}')
         #win.send_keystrokes('{a}')
@@ -128,6 +160,7 @@ class Flight(object):
         for _ in range(n):
             self.win.send_keystrokes('{l}')
         #print('Turn Right')
+
 
     def up(self, n=1):
         #win.send_keystrokes('{w}')
@@ -142,6 +175,7 @@ class Flight(object):
         #win.send_keystrokes('{l}')
         #print('Move up')
 
+
     def down(self, n=1):
         #win.send_keystrokes('{w}')
         #win.send_keystrokes('{a}')
@@ -154,6 +188,7 @@ class Flight(object):
         ##
         #win.send_keystrokes('{l}')
         #print('Move down')
+
 
     def forward(self, n=1):
         for _ in range(n):    
@@ -168,6 +203,7 @@ class Flight(object):
         #win.send_keystrokes('{l}')
         #print('Go Forward')
 
+
     def backward(self, n=1):
         #win.send_keystrokes('{w}')
         #win.send_keystrokes('{a}')
@@ -180,6 +216,7 @@ class Flight(object):
         #win.send_keystrokes('{k}')
         #win.send_keystrokes('{l}')
         #print('Go Backward')
+
 
     def swerve_left(self, n=1):
         #win.send_keystrokes('{w}')
@@ -194,6 +231,7 @@ class Flight(object):
         #win.send_keystrokes('{l}')
         #print('swerve Left')
 
+
     def swerve_right(self, n=1):
         #win.send_keystrokes('{w}') 
         #win.send_keystrokes('{a}')
@@ -207,17 +245,20 @@ class Flight(object):
         #win.send_keystrokes('{l}')
         #print('swerve Right')
 
+
     def top_view(self):
         #win.send_keystrokes('{1}')
         self.win.send_keystrokes('{1}')
         self.top_key += 1
         #print('Top View')
 
+
     def fpp_view(self):
         #win.send_keystrokes('{2}')
         self.win.send_keystrokes('{2}')
         self.fpp_key += 1
         #print('FPP View')
+
 
     def tpp_view(self):
         if self.fpp_key % 2 == 0 and self.top_key % 2 == 0:
@@ -235,9 +276,10 @@ class Flight(object):
             self.top_view()
         #print('TPP View')
 
+
     def coords_xyz(self):
         try:
-            f = open(self.location + '/LOG', 'r')
+            f = open(self.logfile, 'r')
             f.seek(0)
             self.coords, _ = f.read().split('\n')
             self.coords = tuple(map(float, self.coords.split()))
@@ -245,15 +287,17 @@ class Flight(object):
         except:
             return self.coords
 
+
     def angles_xyz(self):
         try:
-            f = open(self.location + '/LOG', 'r')
+            f = open(self.logfile, 'r')
             f.seek(0)
             _, self.angles = f.read().split('\n')
             self.angles = tuple(map(float, self.angles.split()))
             return self.angles
         except:
             return self.angles
+
 
     def goto(self, x2, z2):
         ## if at the start x1 > x2, doesn't work
@@ -300,4 +344,9 @@ class Flight(object):
             except:
                 pass
 
-            
+
+    def kill(self):
+        self.tpp_view()
+        time.sleep(1)   # buffer
+        self.win.close()
+        os.remove(self.logfile)
