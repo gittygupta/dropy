@@ -10,7 +10,7 @@ Scaled down version of Microsoft's AirSim (drone only). Ideal for developers loo
 [![v0.0.x?](https://img.shields.io/badge/v0.0.x-README-indigo.svg)](https://github.com/gittygupta/dropy/blob/master/README_v0.0.x.md)
 
 
-## New to dropy - 0.1.0
+## New to dropy 0.1.0
 
 * Added multiplayer support to work with more than 1 flight object
 * Improved Camera Stability
