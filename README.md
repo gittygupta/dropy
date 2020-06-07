@@ -133,3 +133,4 @@ Every contribution will be welcome.
 Please feel free to raise issues on GitHub or pull requests for ideas, features and add-ons.
 
 The vision is to create better environments in a Pythonic way, for small scale development projects.
+
